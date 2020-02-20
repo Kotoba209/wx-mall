@@ -1,4 +1,3 @@
-<!-- pages/goods_list/index.wxml -->
 <SearchInput></SearchInput>
 <Tabs tabs="{{tabs}}" bindtabsItemChange="handleTabsItemChange">
   <block wx:if="{{tabs[0].isActive}}">

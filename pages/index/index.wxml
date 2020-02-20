@@ -15,19 +15,6 @@
     </swiper>
   </view>
   <!-- 导航栏 -->
-  <!-- <view class="index_cate">
-    <navigator
-    wx:for="{{catesList}}"
-    wx:key="name"
-    url="/pages/category/index"
-    open-type="switchTab"
-    >
-      <image src="{{item.icon}}" mode="widthFix" lazy-load="false" binderror="" bindload="">
-        
-      </image>
-      <view>{{item.name}}</view>
-    </navigator>
-  </view> -->
   <view class="category-box">
     <navigator
     wx:for="{{catesList}}"
