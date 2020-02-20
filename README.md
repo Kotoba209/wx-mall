@@ -39,11 +39,11 @@ api工厂数据使用：
 
 
 
-<img src="https://s2.ax1x.com/2020/02/20/3myNlj.png" style="zoom:80%;" />
+<img src="https://s2.ax1x.com/2020/02/20/3myNlj.png" style="zoom: 50%;" />
 
 
 
-<img src="https://s2.ax1x.com/2020/02/20/3my000.png" style="zoom:80%;" />
+<img src="https://s2.ax1x.com/2020/02/20/3my000.png" style="zoom: 50%;" />
 
 
 
@@ -53,7 +53,19 @@ api工厂数据使用：
 
 在商品详情页中，因为rich-text标签的体验不好，所以我选择了一个小程序的组件，wxParse,
 
-简单易上手且强大，简单使用请查看这篇文章[微信小程序使用wxParse解析html](https://blog.csdn.net/Kotoba209_/article/details/104413748)。自己手动码了一遍所以会比较熟悉些，如有问题可以私信。
+简单易上手且强大，简单使用请查看这篇文章[微信小程序使用wxParse解析html](https://blog.csdn.net/Kotoba209_/article/details/104413748)。
+
+以上就是完成接口数据的替换了，如想要在开发工具中校验合法域名，
+
+<img src="https://s2.ax1x.com/2020/02/21/3m2bIP.png" style="zoom: 50%;" />
+
+或者想要发布小程序的话，需要在微信开发者设置合法域名，具体如下。
+
+<img src="https://s2.ax1x.com/2020/02/21/3m2W8O.png" style="zoom: 50%;" />
+
+
+
+自己手动码了一遍所以会比较熟悉些，如有问题可以私信。
 
 
 
