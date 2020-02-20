@@ -1,0 +1,19 @@
+<!-- pages/goods_list/index.wxml -->
+<SearchInput></SearchInput>
+<Tabs tabs="{{tabs}}" bindtabsItemChange="handleTabsItemChange">
+  <block wx:if="{{tabs[0].isActive}}">
+    <view class="first_tab">
+      <navigator wx:for="{{goodsList}}" wx:key="id" class="goods_item" url="/pages/goods_detail/index?id={{item.id}}">
+        <!-- 左侧 图片容器 -->
+        <view class="goods_img_wrap">
+          <image mode="widthFix" src="{{item.pic?item.pic:'https://ww1.sinaimg.cn/large/007rAy9hgy1g24by9t530j30i20i2glm.jpg'}}"></image>
+        </view>
+        <!-- 右侧 商品容器 -->
+        <view class="goods_info_wrap">
+          <view class="goods_name">{{item.name}}</view>
+          <view class="goods_price">￥{{item.minPrice}}</view>
+        </view>
+      </navigator>
+    </view>
+  </block>
+</Tabs>

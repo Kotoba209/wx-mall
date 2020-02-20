@@ -1,0 +1,23 @@
+<view class="cates">
+  <SearchInput></SearchInput>
+  <view class="cates_container">
+    <scroll-view scroll-y="{{true}}" class="left_menu">
+      <view class="menu_item {{index === currentIndex ? 'active' : ''}}" wx:for="{{leftMenuList}}" wx:key="*this" bindtap="handleItemTap" data-id="{{item.id}}" data-index="{{index}}">
+        {{item.name}}
+      </view>
+    </scroll-view>
+    <scroll-view scroll-top="{{scrollTop}}" scroll-y="{{true}}" class="right_content">
+      <view class="goods_group">
+        <view class="goods_list" wx:if="{{rightContent.length > 0}}">
+          <navigator wx:for="{{rightContent}}" wx:for-item="item2" wx:for-index="index2" wx:key="id" url="/pages/goods_detail/index?id={{item2.id}}">
+            <view class="img_box">
+              <image class="goods_pic" src="{{item2.pic}}" mode="widthFix"></image>
+            </view>
+            <view class="goods_name">{{item2.name}}</view>
+          </navigator>
+        </view>
+        <view wx:else class="non_goods_tips">当前分类暂无商品~</view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

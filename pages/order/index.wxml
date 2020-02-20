@@ -1,0 +1,6 @@
+<!-- pages/order/index.wxml -->
+<Tabs tabs="{{tabs}}" bindtabsItemChange="handleTabsItemChange">
+  <view class="order_main">
+    <view class="order_item">{{content}}</view>
+  </view>
+</Tabs>

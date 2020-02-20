@@ -1,0 +1,86 @@
+/* pages/category/index.wxss */
+page {
+  height: 100%;
+}
+
+.cates {
+  height: 100%;
+}
+
+.cates .cates_container {
+  height: calc(100vh - 90rpx);
+  display: flex;
+}
+
+.cates .cates_container .left_menu {
+  flex: 2;
+}
+
+.cates .cates_container .left_menu .menu_item {
+  height: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30rpx;
+}
+
+.cates .cates_container .left_menu .active {
+  color: var(--themeColor);
+  border-left: 5rpx solid currentColor;
+}
+
+.cates .cates_container .right_content {
+  flex: 5;
+}
+
+.cates .cates_container .right_content .goods_group .goods_title {
+  height: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cates .cates_container .right_content .goods_group .goods_title .delimiter {
+  color: #ccc;
+  padding: 0 10rpx;
+}
+
+.cates .cates_container .right_content .goods_group .goods_list {
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: content-box;
+}
+
+.cates .cates_container .right_content .goods_group .goods_list navigator {
+  overflow: hidden;
+  text-align: center;
+}
+
+.cates .cates_container .right_content .goods_group .goods_list navigator .img_box {
+  width: 180rpx;
+  height: 120rpx;
+  padding: 20rpx;
+  overflow: hidden;
+}
+
+.cates .cates_container .right_content .goods_group .goods_list navigator image {
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.cates .cates_container .right_content .goods_group .goods_list navigator .goods_name {
+  width: 120rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0 auto;
+}
+
+.cates .cates_container .right_content .goods_group .non_goods_tips {
+  width: 300rpx;
+  color: #ccc;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%);
+}
