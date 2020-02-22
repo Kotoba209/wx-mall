@@ -6,6 +6,8 @@ import {
 } from '../../request/index';
 import regeneratorRuntime from '../../lib/runtime/runtime';
 var WxParse = require('../../wxParse/wxParse.js');
+const WXAPI = require('apifm-wxapi');
+const app = getApp();
 Page({
 
   /**
@@ -28,35 +30,49 @@ Page({
     const {
       id
     } = options;
-    console.log(options, '<-options->');
-    console.log(id, '<-id->');
     this.getGoodsDetail(id);
   },
 
   async getGoodsDetail(id) {
-    const res = await http({
-      url: "/shop/goods/detail",
-      data: {
-        id
-      }
-    })
-    console.log(res, '<-res->');
-    const {
-      data
-    } = res;
-    this.GoodsInfo = data;
-    let collect = wx.getStorageSync('collect') || [];
-    let isCollect = collect.some(v => v.basicInfo.id === this.GoodsInfo.basicInfo.id);
-    this.setData({
-      goodsObj: {
-        goods_name: data.basicInfo.name,
-        goods_price: data.basicInfo.minPrice,
-        goods_introduce: data.content,
-        pics: data.pics,
-      },
-      isCollect,
-    });
-    WxParse.wxParse('article', 'html', data.content, this, 5);
+    await WXAPI.goodsDetail(id).then(res => app.handleDestruction(res))
+      .then((data) => {
+        console.log(data, '<-data->');
+        this.GoodsInfo = data;
+        let collect = wx.getStorageSync('collect') || [];
+        let isCollect = collect.some(v => v.basicInfo.id === this.GoodsInfo.basicInfo.id);
+        this.setData({
+          goodsObj: {
+            goods_name: data.basicInfo.name,
+            goods_price: data.basicInfo.minPrice,
+            goods_introduce: data.content,
+            pics: data.pics,
+          },
+          isCollect,
+        });
+        WxParse.wxParse('article', 'html', data.content, this, 5);
+      });
+    // const res = await http({
+    //   url: "/shop/goods/detail",
+    //   data: {
+    //     id
+    //   }
+    // })
+    // const {
+    //   data
+    // } = res;
+    // this.GoodsInfo = data;
+    // let collect = wx.getStorageSync('collect') || [];
+    // let isCollect = collect.some(v => v.basicInfo.id === this.GoodsInfo.basicInfo.id);
+    // this.setData({
+    //   goodsObj: {
+    //     goods_name: data.basicInfo.name,
+    //     goods_price: data.basicInfo.minPrice,
+    //     goods_introduce: data.content,
+    //     pics: data.pics,
+    //   },
+    //   isCollect,
+    // });
+    // WxParse.wxParse('article', 'html', data.content, this, 5);
   },
 
   handlePrevewImage(e) {

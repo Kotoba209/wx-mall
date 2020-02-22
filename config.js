@@ -1,7 +1,5 @@
 module.exports = {
-  version: "7.5.0",
-  note: '升级地址选择器插件',
-  subDomain: "yanye", // 根据教程 https://www.yuque.com/apifm/doc/qr6l4m 查看你自己的 subDomain
+  subDomain: "kotoba", // 根据教程 https://www.yuque.com/apifm/doc/qr6l4m 查看你自己的 subDomain
   appid: "wx510521a2f79c490d", // 您的小程序的appid，购物单功能需要使用
   shareProfile: '百款精品商品，总有一款适合您', // 首页转发的时候话术
   kanjiaRequirePlayAd: false, // 是否必须要观看视频广告后才可以砍价

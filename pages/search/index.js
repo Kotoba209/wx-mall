@@ -1,6 +1,11 @@
 // pages/search/index.js
-import { request, http } from "../../request/index.js";
+import {
+  request,
+  http
+} from "../../request/index.js";
 import regeneratorRuntime from '../../lib/runtime/runtime';
+const WXAPI = require('apifm-wxapi');
+const app = getApp(); // 获取全局
 Page({
 
   /**
@@ -14,7 +19,7 @@ Page({
   TimeId: -1,
   goodsList: [],
 
-   /**
+  /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
@@ -23,9 +28,11 @@ Page({
 
   handleInput(e) {
     // console.log(this.data.goodsList, '<-this.data.goodsList->');
-    const { value } = e.detail;
+    const {
+      value
+    } = e.detail;
     // console.log(value, '<-value->');
-    if(!value.trim()) {
+    if (!value.trim()) {
       this.setData({
         goods: [],
         isFocus: false,
@@ -49,7 +56,6 @@ Page({
           }
         })
       }
-      console.log(goodsArr, '<-goodsArr->');
       this.setData({
         goods: goodsArr,
       });
@@ -57,24 +63,27 @@ Page({
   },
 
   async getGoodsList() {
-    const res = await http({
-      url: "/shop/goods/list",
-    });
-    const { data } = res;
-    if (res.code == 0) {
-      this.goodsList = data;
-      // this.setData({
-      //   goodsList: data,
-      // })
-    }
+    // const res = await http({
+    //   url: "/shop/goods/list",
+    // });
+    // const {
+    //   data
+    // } = res;
+    // if (res.code == 0) {
+    //   this.goodsList = data;
+    // }
+    await WXAPI.goods().then(res => app.handleDestruction(res))
+      .then((data) => {
+        this.goodsList = data;
+      });
   },
 
-  async qsearch(query) {
-    const res = await request({url: "/goods/qsearch", data:{query}});
-    this.setData({
-      goods: res,
-    })
-  },
+  // async qsearch(query) {
+  //   const res = await request({url: "/goods/qsearch", data:{query}});
+  //   this.setData({
+  //     goods: res,
+  //   })
+  // },
 
   handleCancel() {
     this.setData({

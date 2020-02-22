@@ -5,6 +5,8 @@ import {
   http,
 } from '../../request/index';
 import regeneratorRuntime from '../../lib/runtime/runtime';
+const WXAPI = require('apifm-wxapi');
+const app = getApp();
 Page({
 
   /**
@@ -45,14 +47,8 @@ Page({
     }
   },
   async getCatesList() {
-    await http({
-      url: '/shop/goods/category/all'
-    }).then(res => {
-      // console.log(res, '<-res->');
-      if (res.code == 0) {
-        const {
-          data
-        } = res;
+    await WXAPI.goodsCategory().then(res => app.handleDestruction(res))
+      .then((data) => {
         let leftMenuList = data.map(v => {
           return {
             id: v.id,
@@ -66,28 +62,60 @@ Page({
         this.setData({
           leftMenuList,
         })
-      }
-    });
-    await http({
-      url: '/shop/goods/list',
-    }).then(res => {
-      const {
-        data
-      } = res;
-      console.log(data, '<-data123->');
-      this.Cates = data;
-      wx.setStorageSync('CatesList', {
-        time: Date.now(),
-        data: this.Cates
       });
-      let rightContent = data.filter(v => v.categoryId == this.data.leftMenuList[0].id);
-      this.setData({
-        rightContent,
-      })
-    });
+    // await http({
+    //   url: '/shop/goods/category/all'
+    // }).then(res => {
+    //   // console.log(res, '<-res->');
+    //   if (res.code == 0) {
+    //     const {
+    //       data
+    //     } = res;
+    //     let leftMenuList = data.map(v => {
+    //       return {
+    //         id: v.id,
+    //         name: v.name
+    //       }
+    //     });
+    //     wx.setStorageSync('CatesName', {
+    //       time: Date.now(),
+    //       data: leftMenuList
+    //     });
+    //     this.setData({
+    //       leftMenuList,
+    //     })
+    //   }
+    // });
+    await WXAPI.goods().then(res => app.handleDestruction(res))
+      .then((data) => {
+        this.Cates = data;
+        wx.setStorageSync('CatesList', {
+          time: Date.now(),
+          data: this.Cates
+        });
+        let rightContent = data.filter(v => v.categoryId == this.data.leftMenuList[0].id);
+        this.setData({
+          rightContent,
+        })
+      });
+    // await http({
+    //   url: '/shop/goods/list',
+    // }).then(res => {
+    //   const {
+    //     data
+    //   } = res;
+    //   this.Cates = data;
+    //   wx.setStorageSync('CatesList', {
+    //     time: Date.now(),
+    //     data: this.Cates
+    //   });
+    //   let rightContent = data.filter(v => v.categoryId == this.data.leftMenuList[0].id);
+    //   this.setData({
+    //     rightContent,
+    //   })
+    // });
   },
   handleItemTap(e) {
-    // console.log(e, '<-e->');
     const {
       id,
       index,

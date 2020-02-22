@@ -3,6 +3,9 @@ import {
   http,
 } from '../../request/index';
 import regeneratorRuntime from '../../lib/runtime/runtime';
+
+const WXAPI = require('apifm-wxapi');
+const app = getApp();
 Page({
 
   /**
@@ -47,17 +50,23 @@ Page({
   },
 
   async getList() {
-    const res = await http({
-      url: "/shop/goods/list",
-    });
-    const {
-      data
-    } = res;
-    if (res.code == 0) {
-      this.setData({
-        goodsList: [...this.data.goodsList, ...data],
-      })
-    }
+    // const res = await http({
+    //   url: "/shop/goods/list",
+    // });
+    // const {
+    //   data
+    // } = res;
+    // if (res.code == 0) {
+    //   this.setData({
+    //     goodsList: [...this.data.goodsList, ...data],
+    //   })
+    // }
+    await WXAPI.goods().then(res => app.handleDestruction(res))
+      .then((data) => {
+        this.setData({
+          goodsList: [...this.data.goodsList, ...data],
+        })
+      });
     wx.stopPullDownRefresh();
   },
 
