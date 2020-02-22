@@ -27,7 +27,7 @@ api工厂数据使用：
 
 
 
-测试数据来源与某位大佬的项目，更为强大的微信小程序商城：[wechat-app-mall](https://github.com/EastWorld/wechat-app-mall)，动手能力强的同学也可以自己手动修改编辑数据，这些在后台管理中都是可以做到的。
+测试数据来源于api工厂的测试数据，动手能力强的同学也可以自己手动修改编辑数据，这些在后台管理中都是可以做到的。
 
 
 
@@ -63,8 +63,6 @@ api工厂数据使用：
 
 <img src="https://s2.ax1x.com/2020/02/21/3m2W8O.png" style="zoom: 50%;" />
 
-
-
 ### 更新一
 
 1. 使用[apifm-wxapi](https://github.com/gooking/apifm-wxapi) 模块来请求数据，写法比原先的request方法更简洁，注释掉之前的request请求代码，可以直观的看到代码量的减少。这样优化可以使项目体积减少一点，[apifm-wxapi接口文档](https://github.com/gooking/apifm-wxapi/blob/master/instructions.md) 。
@@ -78,4 +76,3 @@ api工厂数据使用：
    然后在app.js的onLaunch方法中初始化 `onLaunch: *function* (*options*) {
    ​    WXAPI.init(this.globalData.subDomain);
      },`， 具体信息在项目文件中都可以找着。
-
