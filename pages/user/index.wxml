@@ -1,4 +1,5 @@
 <!-- pages/user/index.wxml -->
+<import src="/template/login/index.wxml" />
 <view class="user_info_wrap">
   <view wx:if="{{userinfo.avatarUrl}}" class="user_img_wrap">
     <image class="user_bg" src="{{userinfo.avatarUrl}}"></image>
@@ -8,7 +9,8 @@
     </view>
   </view>
   <view wx:else class="user_btn">
-    <navigator url="/pages/login/index">登录</navigator>
+    <image class="nologin" mode="widthFix" src="../../images/nologin.png"></image>
+    <navigator url="/pages/login/index">点击登录账户</navigator>
   </view>
 </view>
 <view class="user_content">
@@ -36,31 +38,35 @@
     <view class="orders_wrap">
       <view class="orders_title">我的订单</view>
       <view class="order_content">
-        <navigator url="/pages/order/index?type=1">
-          <view class="iconfont icon-ding_dan"></view>
-          <view class="order_name">全部订单</view>
-        </navigator>
-        <navigator url="/pages/order/index?type=2">
-          <view class="iconfont icon-fukuantongzhi"></view>
+        <navigator url="/pages/order/index?type=0">
+          <view class="iconfont icon-daifukuan"></view>
           <view class="order_name">待付款</view>
         </navigator>
-        <navigator url="/pages/order/index?type=3">
-          <view class="iconfont icon-receipt-address"></view>
+        <navigator url="/pages/order/index?type=1">
+          <view class="iconfont icon-daifahuo"></view>
+          <view class="order_name">待发货</view>
+        </navigator>
+        <navigator url="/pages/order/index?type=2">
+          <view class="iconfont icon-ziyuan"></view>
           <view class="order_name">待收货</view>
         </navigator>
+        <navigator url="/pages/order/index?type=3">
+          <view class="iconfont icon-daipingjia"></view>
+          <view class="order_name">待评价</view>
+        </navigator>
         <navigator url="/pages/order/index?type=4">
-          <view class="iconfont icon-tuihuotuikuan_dianpu"></view>
-          <view class="order_name">退款/退货</view>
+          <view class="iconfont icon-yiwancheng"></view>
+          <view class="order_name">已完成</view>
         </navigator>
       </view>
     </view>
     <!-- 收货地址管理 -->
-    <view class="address_wrap">收货地址管理</view>
+    <navigator url="/pages/select-address/index" class="address_wrap">收货地址管理</navigator>
     <!-- 应用信息相关 -->
     <view class="app_info_wrap">
       <view class="app_info_item app_info_contact">
         <text>联系客服</text>
-        <text>400-618-4000</text>
+        <text>13944362281</text>
       </view>
       <navigator url="/pages/feedback/index" class="app_info_item">意见反馈</navigator>
       <view class="app_info_item">关于我们</view>
@@ -69,3 +75,4 @@
     <view class="recommend_wrap">把应用推荐给其他人</view>
   </view>
 </view>
+<template is="apifmLogin" data="{{wxlogin: wxlogin}}" />

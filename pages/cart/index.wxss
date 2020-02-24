@@ -1,4 +1,6 @@
 /* pages/cart/index.wxss */
+@import "/template/login/index.wxss";
+
 page {
   padding-bottom: 90rpx;
 }
@@ -28,9 +30,9 @@ page {
 .cart_content .cart_title {
   padding: 20rpx;
   font-size: 36rpx;
-  color: var(--themeColor);
-  border-top: 1rpx solid currentColor;
-  border-bottom: 1rpx solid currentColor;
+  /* color: var(--themeColor); */
+  border-top: 1rpx solid #1CD8D2;
+  border-bottom: 1rpx solid #1CD8D2;
 }
 
 .cart_content .cart_main .cart_item {
@@ -135,11 +137,40 @@ page {
 
 .footer_tool .order_pay_wrap {
   flex: 3;
-  background-color: var(--themeColor);
+  background-color: #1CD8D2;
   color: #fff;
   font-size: 32rpx;
   font-weight: 600;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.no-goods {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.title-box {
+  width: 100%;
+  padding-top: 330rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #999;
+  background: url(https://cdn.it120.cc/images/weappshop/icon-cart.png) no-repeat center 205rpx;
+  background-size: 100rpx auto;
+  margin-bottom: 50rpx;
+}
+
+.to-index-btn {
+  color: #fff;
+  background: #1CD8D2;
+  border-radius: 6px;
+  width: 300rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  font-size: 28rpx;
 }

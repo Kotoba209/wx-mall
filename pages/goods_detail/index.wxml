@@ -26,17 +26,17 @@
 </view>
 <view class="btm_tool">
   <view class="tool_item">
-    <view class="iconfont icon-kefu"></view>
+    <view class="iconfont icon-kefu1"></view>
     <view>客服</view>
     <button open-type="contact"></button>
   </view>
   <view class="tool_item">
-    <view class="iconfont icon-yixianshi-"></view>
+    <view class="iconfont icon-fenxiang"></view>
     <view>分享</view>
     <button open-type="share"></button>
   </view>
   <navigator open-type="switchTab" url="/pages/cart/index" class="tool_item">
-    <view class="iconfont icon-gouwuche"></view>
+    <view class="iconfont .icon-shopcart"></view>
     <view>购物车</view>
   </navigator>
   <view class="tool_item btn_cart " bindtap="handleCartAdd">加入购物车</view>

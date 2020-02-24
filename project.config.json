@@ -140,6 +140,20 @@
 					"pathName": "pages/feedback/index",
 					"query": "type=1",
 					"scene": null
+				},
+				{
+					"id": 12,
+					"name": "添加地址",
+					"pathName": "pages/address-add/index",
+					"query": "id= 266976",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "选择收获地址",
+					"pathName": "pages/select-address/index",
+					"query": "id= 266976",
+					"scene": null
 				}
 			]
 		}

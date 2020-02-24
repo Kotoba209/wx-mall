@@ -10,19 +10,19 @@
     "pages/search/index",
     "pages/user/index",
     "pages/feedback/index",
-    "pages/login/index",
-    "pages/auth/index",
-    "pages/pay/index"
+    "pages/pay/index",
+    "pages/address-add/index",
+    "pages/select-address/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#eb4450",
+    "navigationBarBackgroundColor": "#1CD8D2",
     "navigationBarTitleText": "品优购",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "color": "#999",
-    "selectedColor": "#ff2d4a",
+    "selectedColor": "#1CD8D2",
     "backgroundColor": "#fafafa",
     "list": [{
         "pagePath": "pages/index/index",
@@ -50,6 +50,5 @@
       }
     ]
   },
-  "style": "v2",
   "sitemapLocation": "sitemap.json"
 }

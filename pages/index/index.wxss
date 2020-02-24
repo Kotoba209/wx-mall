@@ -47,6 +47,9 @@
   color: rgba(0,0,0,.5);
   font-size: 28rpx;
 }
+.weui-loadmore {
+  margin-bottom: 0px;
+}
 
 .goods-container {
   display: flex;

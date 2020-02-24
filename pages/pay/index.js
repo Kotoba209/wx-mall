@@ -1,16 +1,11 @@
 // pages/pay/index.js
-import {
-  getSetting,
-  chooseAddress,
-  openSetting,
-  showModal,
-  showToast,
-  requestPayment
-} from "../../utils/asyncWx.js";
 import regeneratorRuntime from '../../lib/runtime/runtime';
 import {
-  request
+  request,
+  http,
 } from "../../request/index.js";
+const WXAPI = require('apifm-wxapi');
+const AUTH = require('../../utils/auth')
 Page({
 
   /**
@@ -18,9 +13,12 @@ Page({
    */
   data: {
     address: {},
+    curAddressData: {},
     cart: [],
     totalPrice: 0,
-    totalNum: 0
+    totalNum: 0,
+    isNeedLogistics: 0,
+    // wxlogin: true,
   },
 
   /**
@@ -34,10 +32,14 @@ Page({
     cart = cart.filter(v => v.checked);
 
     // this.setData({ address });
+    this.setData({
+      isNeedLogistics: 1,
+    })
 
     let totalPrice = 0;
     let totalNum = 0;
     cart.forEach(v => {
+      cart,
       totalPrice += v.num * v.basicInfo.minPrice;
       totalNum += v.num;
     });
@@ -47,86 +49,107 @@ Page({
       totalNum,
       address,
     })
+    // this.initShippingAddress();
+  },
+
+  onShow() {
+    this.initShippingAddress();
+  },
+
+  goCreateOrder() {
+    wx.requestSubscribeMessage({
+      tmplIds: ['ITVuuD_cwYN-5BjXne8cSktDo43xetj0u-lpvFZEQQs',
+        'dw9Tzh9r0sw7Gjab0ovQJx3bP3gdXmF_FZvpnxPd6hc'
+      ],
+      success(res) {
+
+      },
+      fail(e) {
+        console.error(e)
+      },
+      complete: (e) => {
+        this.createOrder(true)
+      },
+    })
   },
 
   async handleOrderPay() {
+    // wx.navigateTo({
+    //   url: '/pages/auth/index'
+    // });
     // 1 判断缓存中有没有token 
     const token = wx.getStorageSync("token");
     // 2 判断
     if (!token) {
-      wx.navigateTo({
-        url: '/pages/auth/index'
-      });
+      AUTH.login();
       return;
     }
-    const res =  await showModal({content: '确定支付吗？'});
-    if (res.confirm) {
-    let newCart=wx.getStorageSync("cart");
-    newCart=newCart.filter(v=>!v.checked);
-    wx.setStorageSync("cart", newCart);
-      wx.showToast({
-        title: '支付成功',
-        icon: 'success',
-        image: '',
-        duration: 2000,
-        mask: false,
-        success: (result)=>{
-          wx.switchTab({
-            url: '/pages/index/index'
-          });
-        },
-        fail: ()=>{},
-        complete: ()=>{}
+    const order_price = this.data.totalPrice;
+    const consignee_addr = this.data.curAddressData;
+    const cart = this.data.cart;
+    console.log(cart, '<-cart->');
+    let goods = [];
+    cart.forEach(v => goods.push({
+      goodsId: v.basicInfo.id,
+      number: v.num,
+      propertyChildIds: "",
+      logisticsType: 0
+    }))
+    let postData = {
+      token: token,
+      goodsJsonStr: JSON.stringify(goods),
+      address: consignee_addr.address,
+      linkMan: consignee_addr.linkMan,
+      mobile: consignee_addr.mobile,
+      provinceId: consignee_addr.provinceId,
+      cityId: consignee_addr.cityId,
+      code: consignee_addr.code,
+    };
+    await this.CreateOrder(postData);
+    wx.navigateTo({
+      url: '/pages/order/index'
+    });
+  },
+
+  async CreateOrder(params) {
+    await WXAPI.orderCreate(params).then(function (res) {
+      if (res.code != 0) {
+        wx.showModal({
+          title: '错误',
+          content: res.msg,
+          showCancel: false
+        })
+        return;
+      }
+    })
+    wx.removeStorageSync('cart');
+    console.log(456, '<-456->');
+  },
+
+  async initShippingAddress() {
+    const res = await WXAPI.defaultAddress(wx.getStorageSync("token"))
+    if (res.code == 0) {
+      console.log(res, '<-resaaa->');
+      this.setData({
+        curAddressData: res.data.info
+      });
+    } else {
+      this.setData({
+        curAddressData: null
       });
     }
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  addAddress: function () {
+    wx.navigateTo({
+      url: "/pages/address-add/index"
+    })
+  },
+  selectAddress: function () {
+    wx.navigateTo({
+      url: "/pages/select-address/index"
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
 
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

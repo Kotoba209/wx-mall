@@ -7,6 +7,7 @@
    showToast
  } from '../../utils/asyncWx.js';
  import regeneratorRuntime from '../../lib/runtime/runtime';
+ const AUTH = require('../../utils/auth')
  Page({
 
    /**
@@ -18,6 +19,7 @@
      allChecked: false,
      totalPrice: 0,
      totalNum: 0,
+     wxlogin: true,
    },
    onShow() {
      const address = wx.getStorageSync('address');
@@ -119,14 +121,19 @@
      }
    },
    async handlePay() {
+     const token = wx.getStorageSync('token');
+     AUTH.checkHasLogined().then(isLogined => {
+       if (!isLogined) {
+         this.setData({
+           wxlogin: isLogined
+         })
+       }
+     })
+     //  console.log(status, '<-status->');
      const {
-       address,
        totalNum
      } = this.data;
-     if (!address.userName) {
-       await showToast({
-         title: '您还没有选择收获地址'
-       });
+     if (!token) {
        return;
      }
      if (totalNum === 0) {
@@ -138,5 +145,34 @@
      wx.navigateTo({
        url: '/pages/pay/index'
      });
-   }
+   },
+   cancelLogin() {
+     this.setData({
+       wxlogin: true
+     })
+   },
+   processLogin(e) {
+     if (!e.detail.userInfo) {
+       wx.showToast({
+         title: '已取消',
+         icon: 'none',
+       })
+       return;
+     }
+     const {
+       userInfo
+     } = e.detail;
+     wx.setStorageSync("userinfo", userInfo);
+     this.setData({
+       wxlogin: true,
+     })
+     AUTH.register(this);
+     wx.showToast({
+       title: '登录成功',
+       icon: 'success',
+       image: '',
+       duration: 2000,
+       mask: true,
+     });
+   },
  })

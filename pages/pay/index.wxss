@@ -1,18 +1,24 @@
 /* pages/pay/index.wxss */
+@import "/template/login/index.wxss";
+
 page {
   padding-bottom: 90rpx;
 }
+
 .revice_address_row .user_info_row {
   display: flex;
   padding: 20rpx;
 }
+
 .revice_address_row .user_info_row .user_info {
   flex: 5;
 }
+
 .revice_address_row .user_info_row .user_phone {
   flex: 3;
   text-align: right;
 }
+
 .cart_content .cart_title {
   padding: 20rpx;
   font-size: 36rpx;
@@ -20,26 +26,31 @@ page {
   border-top: 1rpx solid currentColor;
   border-bottom: 1rpx solid currentColor;
 }
+
 .cart_content .cart_main .cart_item {
   display: flex;
   padding: 10rpx;
   border-bottom: 1rpx solid #ccc;
 }
+
 .cart_content .cart_main .cart_item .cart_img_wrap {
   flex: 2;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .cart_content .cart_main .cart_item .cart_img_wrap image {
   width: 80%;
 }
+
 .cart_content .cart_main .cart_item .cart_info_wrap {
   flex: 4;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
+
 .cart_content .cart_main .cart_item .cart_info_wrap .goods_name {
   display: -webkit-box;
   overflow: hidden;
@@ -47,17 +58,21 @@ page {
   -webkit-line-clamp: 2;
   color: #666;
 }
+
 .cart_content .cart_main .cart_item .cart_info_wrap .goods_price_wrap {
   display: flex;
   justify-content: space-between;
 }
+
 .cart_content .cart_main .cart_item .cart_info_wrap .goods_price_wrap .goods_price {
   color: var(--themeColor);
   font-size: 34rpx;
 }
+
 .cart_content .cart_main .cart_item .cart_info_wrap .goods_price_wrap .cart_num_tool {
   display: flex;
 }
+
 .cart_content .cart_main .cart_item .cart_info_wrap .goods_price_wrap .cart_num_tool .goods_num {
   width: 55rpx;
   height: 55rpx;
@@ -65,6 +80,7 @@ page {
   justify-content: center;
   align-items: center;
 }
+
 .footer_tool {
   position: fixed;
   bottom: 0;
@@ -75,23 +91,79 @@ page {
   display: flex;
   border-top: 1rpx solid #ccc;
 }
+
 .footer_tool .total_price_wrap {
   flex: 5;
   padding-right: 15rpx;
   text-align: right;
 }
+
 .footer_tool .total_price_wrap .total_price .total_price_text {
   color: var(--themeColor);
   font-size: 34rpx;
   font-weight: 600;
 }
+
 .footer_tool .order_pay_wrap {
   flex: 3;
-  background-color: var(--themeColor);
+  background-color: #1CD8D2;
   color: #fff;
   font-size: 32rpx;
   font-weight: 600;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.peisong-way {
+  width: 100%;
+  background-color: #fff;
+  margin-bottom: 20rpx;
+}
+
+.address-box {
+  width: 100%;
+  background: url(https://cdn.it120.cc/images/weappshop/arrow-right.png) no-repeat 705rpx center,
+    url(https://cdn.it120.cc/images/weappshop/addr-line.png) no-repeat center bottom;
+  background-size: 16rpx auto, 750rpx auto;
+  background-color: #fff;
+  margin: 20rpx 0;
+}
+
+.add-addres {
+  width: 100%;
+}
+
+.add-address .title {
+  font-size: 28rpx;
+  color: #000;
+  margin-left: 30rpx;
+  background: url(https://cdn.it120.cc/images/weappshop/ico-add-addr.png) no-repeat left center;
+  background-size: 60rpx auto;
+  padding: 40rpx 0 40rpx 90rpx;
+}
+
+.show-address {
+  width: 664rpx;
+  box-sizing: border-box;
+  padding-left: 100rpx;
+  background: url(https://cdn.it120.cc/images/weappshop/ico-addr.png) no-repeat 30rpx 35rpx;
+  background-size: 30rpx auto;
+}
+
+.show-address .name-tel {
+  font-size: 28rpx;
+  color: #000;
+  padding: 30rpx 0 20rpx 0;
+}
+
+.show-address .addr-text {
+  font-size: 24rpx;
+  color: #888;
+  padding-bottom: 34rpx;
+  line-height: 36rpx;
+}
+
+form {
+  width: 100%;
 }

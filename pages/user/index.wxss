@@ -1,4 +1,6 @@
 /* pages/user/index.wxss */
+@import "/template/login/index.wxss";
+
 page {
   background-color: #edece8;
 }
@@ -6,8 +8,14 @@ page {
 .user_info_wrap {
   height: 45vh;
   overflow: hidden;
-  background-color: var(--themeColor);
+  background-color: #1CD8D2;
+  /* background: linear-gradient(-90deg, rgba(252, 88, 89, 1) 0%, rgba(255, 167, 124, 1) 100%) no-repeat; */
   position: relative;
+}
+
+.nologin {
+  width: 120rpx;
+  margin: 0 auto;
 }
 
 .user_info_wrap .user_img_wrap {
@@ -42,12 +50,16 @@ page {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: 40%;
-  border: 1rpx solid greenyellow;
-  color: greenyellow;
+  top: 20%;
+  /* border: 1rpx solid greenyellow; */
+  color: #fff;
   font-size: 38rpx;
   padding: 30rpx;
   border-radius: 10rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .user_content {
