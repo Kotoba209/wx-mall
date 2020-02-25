@@ -88,7 +88,7 @@
 
 
 
-#### 新增：
+#### 更新一：
 
 在商品详情页中，因为rich-text标签的体验不好，所以我选择了一个小程序的组件，wxParse,
 
@@ -104,7 +104,7 @@
 
 
 
-#### 更新一
+#### 更新二：
 
 1. 使用[apifm-wxapi](https://github.com/gooking/apifm-wxapi) 模块来请求数据，写法比原先的request方法更简洁，注释掉之前的request请求代码，可以直观的看到代码量的减少。这样优化可以使项目体积减少一点，[apifm-wxapi接口文档](https://github.com/gooking/apifm-wxapi/blob/master/instructions.md) 。
 
@@ -122,7 +122,7 @@
 
 
 
-#### 更新二：
+#### 更新三：
 
 1. 使用WeUI部分组件，使用教程 [WeUI使用步骤](https://blog.csdn.net/Missbelover/article/details/91950521) ；
 
