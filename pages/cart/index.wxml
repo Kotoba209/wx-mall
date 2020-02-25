@@ -51,7 +51,7 @@
       <!-- <image mode="widthFix" src="http://hbimg.b0.upaiyun.com/e1b1467beea0a9c7d6a56b32bac6d7e5dcd914f7c3e6-YTwUd6_fw658"></image> -->
       <view class="no-goods">
         <view class="title-box">购物车空空如也～</view>
-        <view class="to-index-btn" bindtap="toIndexPage">去逛逛</view>
+        <navigator class="to-index-btn" open-type="switchTab" url="/pages/category/index">去逛逛</navigator>
         <view style="position:absolute;bottom:10rpx;width:750rpx;">
           <!-- <ad unit-id="adunit-588264b3e2362e1e"></ad> -->
         </view>
