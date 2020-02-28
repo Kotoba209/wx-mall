@@ -87,7 +87,6 @@ Page({
     const order_price = this.data.totalPrice;
     const consignee_addr = this.data.curAddressData;
     const cart = this.data.cart;
-    console.log(cart, '<-cart->');
     let goods = [];
     cart.forEach(v => goods.push({
       goodsId: v.basicInfo.id,
@@ -123,7 +122,6 @@ Page({
       }
     })
     wx.removeStorageSync('cart');
-    console.log(456, '<-456->');
   },
 
   async initShippingAddress() {
