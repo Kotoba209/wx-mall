@@ -10,6 +10,8 @@ Page({
     swiperList: [],
     catesList: [],
     goodsList: [],
+    // index: [],
+    // news: [],
   },
   //options(Object)
   onLoad: function (options) {
@@ -34,8 +36,14 @@ Page({
     // handleDestruction 为定义在 app.js里面的全局方法，用于解构数据
     WXAPI.banners().then(res => app.handleDestruction(res))
       .then((data) => {
+        // const index = data.filter(val => val.type = 'index')
+        // const news = data.filter(val => val.type = 'new')
+
+
         this.setData({
           swiperList: data,
+          index: index,
+          news: news,
         })
       });
   },
@@ -56,6 +64,7 @@ Page({
     //   });
     WXAPI.goodsCategory().then(res => app.handleDestruction(res))
       .then((data) => {
+        // console.log(data, '<-data456->');
         this.setData({
           catesList: data,
         })
@@ -79,9 +88,27 @@ Page({
     //   });
     WXAPI.goods().then(res => app.handleDestruction(res))
       .then((data) => {
+        // console.log(data, '<-data->');
         this.setData({
           goodsList: data,
         })
       });
   },
+  handleToCategory(e) {
+    
+    getApp().globalData.custom = {
+      index: e.currentTarget.dataset.index,
+      id: e.currentTarget.dataset.id
+    };
+
+    wx.switchTab({
+      url: '/pages/category/index',
+      success: function () {
+        var page = getCurrentPages().pop();
+        if (page == undefined || page == null) return;
+        page.onLoad();
+      }
+    });
+  }
+  // url="/pages/category/index" open-type="switchTab"
 });

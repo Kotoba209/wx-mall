@@ -13,7 +13,7 @@
   </view>
   <!-- 导航栏 -->
   <view class="category-box">
-    <navigator wx:for="{{catesList}}" wx:key="goods_id" url="/pages/category/index" open-type="switchTab">
+    <view wx:for="{{catesList}}" wx:key="goods_id" data-index="{{index}}" data-id="{{item.id}}" bindtap="handleToCategory">
       <view class="category-list">
         <view class="category-column">
           <!-- <view class="category-column {{activeCategoryId == item.id ? 'type-item-on' : ''}}" bindtap="tabClick" id="{{item.id}}"> -->
@@ -21,7 +21,7 @@
           <view class="category-title">{{item.name}}</view>
         </view>
       </view>
-    </navigator>
+    </view>
   </view>
   <!-- 商品信息 -->
   <view class='space'></view>

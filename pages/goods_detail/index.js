@@ -22,8 +22,11 @@ Page({
 
   /**
    * 生命周期函数--监听页面加载
+   * 
    */
+
   onShow: function () {
+    // const products = wx.getStorageSync('products') || [];
     let pages = getCurrentPages();
     let currentPage = pages[pages.length - 1];
     let options = currentPage.options;
@@ -32,11 +35,18 @@ Page({
     } = options;
     this.getGoodsDetail(id);
   },
+  // onShow: function () {
+  //   const products = wx.getStorageSync('products') || [];
+
+  //   // productViewsRecord();
+
+
+  //   const products = wx.setStorageSync('products', products) || [];
+  // },
 
   async getGoodsDetail(id) {
     await WXAPI.goodsDetail(id).then(res => app.handleDestruction(res))
       .then((data) => {
-        console.log(data, '<-data->');
         this.GoodsInfo = data;
         let collect = wx.getStorageSync('collect') || [];
         let isCollect = collect.some(v => v.basicInfo.id === this.GoodsInfo.basicInfo.id);
@@ -46,11 +56,14 @@ Page({
             goods_price: data.basicInfo.minPrice,
             goods_introduce: data.content,
             pics: data.pics,
+            base_info_id: data.basicInfo.id
           },
           isCollect,
         });
         WxParse.wxParse('article', 'html', data.content, this, 5);
       });
+
+    this.productViewsRecord(this.data.goodsObj)
     // const res = await http({
     //   url: "/shop/goods/detail",
     //   data: {
@@ -74,9 +87,21 @@ Page({
     // });
     // WxParse.wxParse('article', 'html', data.content, this, 5);
   },
+  productViewsRecord(obj) {
+    const products = wx.getStorageSync('products') || [];
+
+    let index = products.findIndex(v => v.pics[0].goodsId === obj.pics[0].goodsId);
+
+    if (index === -1) {
+      products.push(obj);
+    } else {
+      products.splice(index, 1)
+      products.unshift(obj)
+    }
+    wx.setStorageSync('products', products);
+  },
 
   handlePrevewImage(e) {
-    // console.log(1, '<-1->');
     const urls = this.GoodsInfo.pics.map(v => v.pic);
     const current = e.currentTarget.dataset.url;
     wx.previewImage({
@@ -87,7 +112,6 @@ Page({
 
   // 加入购物车
   handleCartAdd() {
-    // console.log(12, '<-12->');
     let cart = wx.getStorageSync('cart') || [];
     let index = cart.findIndex(v => v.basicInfo.id === this.GoodsInfo.basicInfo.id);
     if (index === -1) {

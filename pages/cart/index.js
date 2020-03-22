@@ -59,7 +59,7 @@
        cart
      } = this.data;
 
-     let index = cart.findIndex(v => v.goods_id === goods_id);
+     let index = cart.findIndex(v => v.basicInfo.id === goods_id);
      cart[index].checked = !cart[index].checked;
      this.setCart(cart);
    },
@@ -136,6 +136,7 @@
      if (!token) {
        return;
      }
+     console.log(totalNum, '<-totalNum->');
      if (totalNum === 0) {
        await showToast({
          title: '您还没有选购商品'

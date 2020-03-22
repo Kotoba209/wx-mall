@@ -154,6 +154,13 @@
 					"pathName": "pages/select-address/index",
 					"query": "id= 266976",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
+					"query": "id=123",
+					"scene": null
 				}
 			]
 		}
