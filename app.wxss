@@ -1,4 +1,4 @@
-@import './styles//iconfont.wxss';
+@import './styles/iconfont.wxss';
 @import 'weui/weui.wxss';
 
 

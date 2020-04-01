@@ -15,7 +15,6 @@ App({
     return data;
   },
   login(e) {
-    console.log(e, '<-e->');
     if (!e.detail.userInfo) {
       // 你点了取消授权
       return;

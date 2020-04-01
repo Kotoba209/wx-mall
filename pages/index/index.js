@@ -10,8 +10,6 @@ Page({
     swiperList: [],
     catesList: [],
     goodsList: [],
-    // index: [],
-    // news: [],
   },
   //options(Object)
   onLoad: function (options) {
@@ -36,14 +34,10 @@ Page({
     // handleDestruction 为定义在 app.js里面的全局方法，用于解构数据
     WXAPI.banners().then(res => app.handleDestruction(res))
       .then((data) => {
-        // const index = data.filter(val => val.type = 'index')
-        // const news = data.filter(val => val.type = 'new')
 
 
         this.setData({
           swiperList: data,
-          index: index,
-          news: news,
         })
       });
   },

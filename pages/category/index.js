@@ -47,7 +47,7 @@ Page({
         this.Cates = CatesList.data;
         let leftMenuList = CatesName.data;
         let rightContent = null;
-        if (custom.id) {
+        if (custom) {
           rightContent = this.Cates.filter(v => v.categoryId == custom.id)
         } else {
           rightContent = this.Cates.filter(v => v.categoryId == leftMenuList[0].id)
@@ -60,8 +60,11 @@ Page({
     }
   },
   async getCatesList() {
-    const { custom } = getApp().globalData;
-    
+    var that = this;
+    const {
+      custom
+    } = getApp().globalData;
+
     await WXAPI.goodsCategory().then(res => app.handleDestruction(res))
       .then((data) => {
         let leftMenuList = data.map(v => {
@@ -87,10 +90,10 @@ Page({
           data: this.Cates
         });
         let rightContent = null;
-        if (custom.id) {
-          rightContent = data.filter(v => v.categoryId == custom.id)
+        if (custom) {
+          rightContent = data.filter(v => v.categoryId === custom.id)
         } else {
-          rightContent = data.filter(v => v.categoryId == this.data.leftMenuList[0].id)
+          rightContent = data.filter(v => v.categoryId === this.data.leftMenuList[0].id)
         }
         this.setData({
           rightContent,
@@ -99,19 +102,16 @@ Page({
   },
   handleItemTap(e) {
     let id = null;
-    let index = null;
-    if (!e.currentTarget) {
-      id = e.id;
-      index = e.index
-    } else {
-      id = e.currentTarget.dataset.id;
-      index = e.currentTarget.dataset.index;
+    let index = 0;
+    if (e) {
+      if (!e.currentTarget) {
+        id = e.id;
+        index = e.index
+      } else {
+        id = e.currentTarget.dataset.id;
+        index = e.currentTarget.dataset.index;
+      }
     }
-
-    // const {
-    //   id,
-    //   index,
-    // } = e.currentTarget.dataset;
 
     let rightContent = this.Cates.filter(v => v.categoryId == id);
     this.setData({
@@ -119,5 +119,10 @@ Page({
       rightContent,
       scrollTop: 0,
     })
+
+    // const {
+    //   id,
+    //   index,
+    // } = e.currentTarget.dataset;
   },
 })

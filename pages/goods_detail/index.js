@@ -129,6 +129,33 @@ Page({
       icon: 'success',
     });
   },
+
+  handleBuyNow() {
+    // console.log(this.GoodsInfo, '<-this.GoodsInfo->');
+    // const { goodsObj } = this.data
+    const {
+      GoodsInfo
+    } = this
+    wx.setStorageSync('single', [GoodsInfo]);
+    wx.navigateTo({
+      url: '/pages/pay/index',
+      success: () => {
+        this.handleReverseProCd();
+      }
+    });
+  },
+
+  handleReverseProCd() {
+    let cart = wx.getStorageSync('cart') || [];
+    let newCart = cart.map(v => {
+      return {
+        ...v,
+        checked: false,
+      }
+    });
+    wx.setStorageSync('cart', newCart);
+  },
+
   // 点击 收藏商品
   handleCollect() {
     let isCollect = false;

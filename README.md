@@ -8,7 +8,15 @@
 
 参考学习：[微信小程序商城](https://github.com/EastWorld/wechat-app-mall)
 
+***2020.03.29更新：***
 
+把部分数据迁移到小程序云开发数据库中进行增删改查操作：[wx-mall-cloud](https://github.com/Kotoba209/wx-mall-cloud)
+
+- 增加立即购买的功能
+
+
+
+---
 
 #### api工厂的使用：
 

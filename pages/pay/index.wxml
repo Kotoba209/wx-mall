@@ -12,7 +12,7 @@
         <view class="goods_name">{{item.basicInfo.name}}</view>
         <view class="goods_price_wrap">
           <view class="goods_price">￥{{item.basicInfo.minPrice}}</view>
-          <view class="cart_num_tool">
+          <view class="cart_num_tool" wx:if="{{item.num}}">
             <view class="goods_num">X {{item.num}}</view>
           </view>
         </view>

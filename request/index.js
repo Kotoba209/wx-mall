@@ -1,4 +1,3 @@
-
 let ajaxTimes = 0;
 export const request = (params) => {
   ajaxTimes++;
@@ -12,13 +11,13 @@ export const request = (params) => {
     wx.request({
       ...params,
       url: baseUrl + params.url,
-      success:(result) => {
+      success: (result) => {
         resolve(result.data.message);
       },
-      fail:(err) => {
+      fail: (err) => {
         reject(err);
       },
-      complete:() => {
+      complete: () => {
         ajaxTimes--;
         if (ajaxTimes === 0) {
           wx.hideLoading();
@@ -28,6 +27,23 @@ export const request = (params) => {
   })
 }
 
+// export const request = (params) => {
+//   return new Promise((resolve, reject) => {
+//     wx.request({
+//       ...params,
+//       success: (result) => {
+//         resolve(result);
+//       },
+//       fail: (err) => {
+//         reject(err);
+//       }
+
+
+
+//     });
+//   })
+// }
+
 export const http = (params) => {
   ajaxTimes++;
 
@@ -35,18 +51,18 @@ export const http = (params) => {
     title: "加载中",
     mask: true
   });
-  const baseUrl = "https://api.it120.cc/kotoba";
+  const baseUrl = "https://api.it120.cc/icetommy";
   return new Promise((resolve, reject) => {
     wx.request({
       ...params,
       url: baseUrl + params.url,
-      success:(result) => {
+      success: (result) => {
         resolve(result.data);
       },
-      fail:(err) => {
+      fail: (err) => {
         reject(err);
       },
-      complete:() => {
+      complete: () => {
         ajaxTimes--;
         if (ajaxTimes === 0) {
           wx.hideLoading();
