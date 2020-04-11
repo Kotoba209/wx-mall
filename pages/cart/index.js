@@ -24,7 +24,6 @@
    onShow() {
      const address = wx.getStorageSync('address');
      const cart = wx.getStorageSync('cart') || [];
-     console.log(cart, '<-cart->');
 
      this.setData({
        address,
@@ -73,7 +72,7 @@
 
      cart.forEach(v => {
        if (v.checked) {
-         totalPrice = v.num * v.basicInfo.minPrice;
+         totalPrice += v.num * v.basicInfo.minPrice;
          totalNum = v.num;
        } else {
          allChecked = false;

@@ -47,7 +47,6 @@ Page({
     } = e.detail;
     wx.setStorageSync("userinfo", userInfo);
     this.getUserInfo()
-    console.log(this, '<-this->');
     AUTH.register(this);
   },
 
