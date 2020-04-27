@@ -127,6 +127,7 @@ Page({
 
     wx.setStorageSync('cart', newCart);
   },
+  //
 
   async initShippingAddress() {
     const res = await WXAPI.defaultAddress(wx.getStorageSync("token"))
