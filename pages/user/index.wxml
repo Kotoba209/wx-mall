@@ -10,7 +10,7 @@
   </view>
   <view wx:else class="user_btn">
     <image class="nologin" mode="widthFix" src="../../images/nologin.png"></image>
-    <navigator url="/pages/login/index">点击登录账户</navigator>
+    <view bindtap="login">点击登录账户</view>
   </view>
 </view>
 <view class="user_content">

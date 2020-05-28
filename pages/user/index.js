@@ -59,5 +59,10 @@ Page({
       collectNums: collect.length,
       wxlogin: true,
     });
-  }
+  },
+  login() {
+    this.setData({
+      wxlogin: false
+    })
+  },
 })
