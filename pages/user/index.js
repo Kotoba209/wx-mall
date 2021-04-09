@@ -1,3 +1,8 @@
+/*
+ * @Author: kotoba
+ * @Date: 2020-03-22 16:46:54
+ * @LastEditTime: 2021-04-09 19:46:03
+ */
 // pages/user/index.js
 const AUTH = require('../../utils/auth')
 Page({
@@ -9,7 +14,6 @@ Page({
   },
   onShow() {
     const userinfo = wx.getStorageSync("userinfo");
-    console.log(userinfo, '<-userinfo->');
     const collect = wx.getStorageSync("collect") || [];
     if (!userinfo) {
       this.setData({
@@ -35,19 +39,24 @@ Page({
     })
   },
   processLogin(e) {
-    if (!e.detail.userInfo) {
-      wx.showToast({
-        title: '已取消',
-        icon: 'none',
-      })
-      return;
-    }
-    const {
-      userInfo
-    } = e.detail;
-    wx.setStorageSync("userinfo", userInfo);
-    this.getUserInfo()
-    AUTH.register(this);
+    var that = this;
+    wx.getUserProfile({
+      desc: "获取用户信息",
+      success: (res) => {
+        const {
+          userInfo
+        } = res;
+        wx.setStorageSync("userinfo", userInfo);
+        this.getUserInfo()
+        AUTH.register(that);
+      },
+      fail: () => {
+        wx.showToast({
+          title: '获取用户信息失败',
+          icon: 'none',
+        })
+      }
+    })
   },
 
   getUserInfo() {
