@@ -152,27 +152,25 @@
      })
    },
    processLogin(e) {
-     if (!e.detail.userInfo) {
-       wx.showToast({
-         title: '已取消',
-         icon: 'none',
-       })
-       return;
-     }
-     const {
-       userInfo
-     } = e.detail;
-     wx.setStorageSync("userinfo", userInfo);
-     this.setData({
-       wxlogin: true,
-     })
-     AUTH.register(this);
-     wx.showToast({
-       title: '登录成功',
-       icon: 'success',
-       image: '',
-       duration: 2000,
-       mask: true,
-     });
+    var that = this;
+    wx.getUserProfile({
+      desc: "获取用户信息",
+      success: (res) => {
+        const {
+          userInfo
+        } = res;
+        wx.setStorageSync("userinfo", userInfo);
+        AUTH.register(that);
+      },
+      fail: () => {
+        wx.showToast({
+          title: '获取用户信息失败',
+          icon: 'none',
+        })
+      }
+    })
+    this.setData({
+      wxlogin: true,
+    })
    },
  })
