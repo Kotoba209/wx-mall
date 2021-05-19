@@ -8,6 +8,14 @@
 
 参考学习：[微信小程序商城](https://github.com/EastWorld/wechat-app-mall)
 
+***can not get openid***
+
+需要在 api工厂的  微信设置-小程序设置-配置secret/AppId（secret、AppId如何获取百度一下就知道了）,  还有在项目里面全局搜索一下 appid  把我的替换成你的。
+
+
+
+---
+
 ***2020.04.27更新：***
 
 各位小伙伴如果有什么好的关于增加一些功能的点子，不妨可以提提issue，我看到觉得可以实现会增加的。
